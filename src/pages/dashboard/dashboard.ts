@@ -22,4 +22,8 @@ export class DashboardPage {
     console.log('ionViewDidLoad DashboardPage');
   }
 
+  logout(){
+    this.navCtrl.setRoot('LoginPage');
+  }
+
 }

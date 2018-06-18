@@ -1,17 +1,28 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Headers, RequestOptions } from '@angular/http';
 
-/*
-  Generated class for the ConstantsProvider provider.
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
-@Injectable()
-export class ConstantsProvider {
+const headerForm: Headers = new Headers(
+  { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+);
+const headerJson: Headers = new Headers(
+  { 'Content-Type': 'application/json' },
+);
 
-  constructor(public http: HttpClient) {
-    console.log('Hello ConstantsProvider Provider');
-  }
+export const API_URL = 'http://localhost:8080/api-aelt/';
 
-}
+export const API_SUB_URL = {
+  URL_LOGIN: 'user/login',
+
+  URL_USER: 'user/',
+
+};
+
+/**
+ * Header options form.
+ */
+export const HEADER_OPTIONS_FORM: RequestOptions = new RequestOptions({ headers: headerForm });
+
+/**
+ * Header Options json.
+ */
+export const HEADER_OPTIONS_JSON: RequestOptions = new RequestOptions({ headers: headerJson });

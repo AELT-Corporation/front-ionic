@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController, IonicPage } from 'ionic-angular';
-import { AuthService } from '../../providers/auth-service';
+import { NavController, IonicPage, LoadingController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -8,45 +7,32 @@ import { AuthService } from '../../providers/auth-service';
   templateUrl: 'register.html',
 })
 export class RegisterPage {
-  createSuccess = false;
+
   registerCredentials = { firstName: '' ,email: '', password: '' };
 
-  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController) { }
+  constructor(
+    private nav: NavController,
+    private loadingCtrl: LoadingController,
+  ) { }
 
-  public register() {
-    this.auth.register(this.registerCredentials).subscribe(success => {
-      if (success) {
-        this.createSuccess = true;
-        this.showPopup("Success", "Account created.");
-        this.nav.setRoot('DashboardPage');
-      } else {
-        this.showPopup("Error", "Problem creating account.");
-      }
-    },
-      error => {
-        this.showPopup("Error", error);
-      });
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad DashboardPage');
   }
 
-  showPopup(title, text) {
-    let alert = this.alertCtrl.create({
-      title: title,
-      subTitle: text,
-      buttons: [
-        {
-          text: 'OK',
-          handler: data => {
-            if (this.createSuccess) {
-              this.nav.popToRoot();
-            }
-          }
-        }
-      ]
-    });
-    alert.present();
+  public register() {
+    
+    // const load = this.loadingCtrl.create({
+    //   content: 'Please wait...',
+    //   dismissOnPageChange: true
+    // });
+
+    // load.present();
+
+    this.nav.setRoot('DashboardPage');
+   
   }
 
   logOut(){
-    this.auth.logout();
+    this.nav.pop();
   }
 }
