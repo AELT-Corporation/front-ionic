@@ -21,12 +21,12 @@ export class RegisterPage {
 
   public register() {
     
-    // const load = this.loadingCtrl.create({
-    //   content: 'Please wait...',
-    //   dismissOnPageChange: true
-    // });
+    const load = this.loadingCtrl.create({
+      content: 'Please wait...',
+      dismissOnPageChange: true
+    });
 
-    // load.present();
+    load.present();
 
     this.nav.setRoot('DashboardPage');
    

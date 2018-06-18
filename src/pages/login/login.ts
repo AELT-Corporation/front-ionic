@@ -16,6 +16,11 @@ export class LoginPage {
   ) { }
   
   public login() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Please wait...',
+      dismissOnPageChange: true
+    });
+    this.loading.present();
     this.nav.setRoot('DashboardPage');
   }
 
