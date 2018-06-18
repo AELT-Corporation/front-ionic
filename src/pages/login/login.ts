@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, LoadingController, Loading, IonicPage } from 'ionic-angular';
+import { HttpRequestsProvider } from './../../providers/http-request';
+import { API_SUB_URL } from '../../providers/constants';
  
 @IonicPage()
 @Component({
@@ -12,7 +14,8 @@ export class LoginPage {
  
   constructor(
     private nav: NavController, 
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private httpRequest: HttpRequestsProvider,
   ) { }
   
   public login() {
@@ -21,7 +24,14 @@ export class LoginPage {
       dismissOnPageChange: true
     });
     this.loading.present();
-    this.nav.setRoot('DashboardPage');
+    // this.nav.setRoot('DashboardPage');
+
+    const data = this.registerCredentials;
+
+    this.httpRequest.postRequest(API_SUB_URL.URL_LOGIN, data, 'json').then((res) => {
+      console.log(res);
+      
+    }).catch(() => this.loading.dismiss());
   }
 
   public createAccount() {

@@ -54,11 +54,11 @@ export class HttpRequestsProvider {
   postRequest(
     url: string,
     data: any,
-    header: string,
-    auth: RequestOptions = null): Promise<Response | Request> {
+    header: string
+    ) {
     // tslint:disable-next-line:no-this-assignment
     const self = this;
-    const headerOption: RequestOptions = (auth) ? auth : self.getHeader(header);
+    const headerOption = self.getHeader(header);
 
     return new Promise<Response | Request>((resolve, reject) => {
       self.http.post(API_URL + url, data, headerOption)
